@@ -1,0 +1,48 @@
+DATASET_ROOT: 'small_dataset'
+DATASET: 'mv5_correspondence_dataset_no_shuffle'
+DATASET_CATES: ['car']
+ADD_BACKGROUND_NOISE: False
+PROPORTION: 1.0
+DATASET_INDEX: ['resource/index/pix2surf_viz_car_small_train.json',
+                'resource/index/pix2surf_viz_car_small_test.json']
+
+
+MODES: ['train']
+MODEL: 'pix2surf_mv'
+#XYZ_UV_DIFF_ALPHA: 0.2
+#XYZ_UV_DIFF_COEF : 0.3
+
+GPU: [0,1]
+BATCHSIZE: 2
+DATALOADER_WORKERS: 6
+EPOCH_TOTAL: 10
+LR: 1e-4
+
+
+LOG_DIR: 'mv-car-small_dataset'
+
+LOGGER: 'logger_s1'
+LOGGER_SELECT: ['metric','image','model','xls']
+MODEL_SAVE_PER_N_EPOCH: 20
+VIS_PER_N_EPOCH: 1
+VIS_PER_N_BATCH: 50
+VIS_ONE_PER_BATCH: True
+VIS_TRAIN_PER_BATCH: 100
+
+RESUME: False
+# published mv car plain
+MODEL_INIT_PATH: ['resource/weight/eccv_pix2surf_mv_car_plain_epoch_21.model']
+# published sv car plain
+#MODEL_INIT_PATH: ['resource/weight/eccv_pix2surf_sv_car_plain_epoch_30.model']
+# my sv retraining frm scratch
+#MODEL_INIT_PATH: ['/home/ubuntu/research/pix2surf_clean/log/pix2surf-sv-car-plain/model/epoch_30.model']
+# my mv retraining frm scratch
+#MODEL_INIT_PATH: ['/home/ubuntu/research/pix2surf_clean/log/pix2surf-mv-car-plain/model/epoch_30.model']
+
+#MODEL_INIT_PATH: ['resource/weight/my_training_sv_car_plain_epoch_30.model']
+
+BACKUP_FILES: ['core/net_bank/pix2surf_cnn.py',
+               'core/net_bank/mlp.py',
+               'core/net_bank/loss.py',
+               'core/models/utils/model_utils.py',
+               'core/models/utils/render_utils.py']

@@ -1,0 +1,43 @@
+#config to get deterministic image outputs of mv  network
+DATASET_ROOT: 'small_dataset'
+DATASET: 'mv5_correspondence_dataset_no_shuffle' #disabled shuffle of views
+DATASET_CATES: ['car']
+PROPORTION: 1.0
+DATASET_INDEX: ['resource/index/pix2surf_viz_car_small_train.json',
+                'resource/index/pix2surf_viz_car_small_test.json']
+
+
+MODES: ['test']
+MODEL: 'pix2surf_mv_render'
+
+GPU: [0]
+BATCHSIZE: 2
+DATALOADER_WORKERS: 4
+EPOCH_TOTAL: 1
+LR: 0.0
+
+LOG_DIR: 'render-mv-car-small-no-shuffle'
+
+LOGGER: 'logger_s1'
+LOGGER_SELECT: ['metric','image','model','xls']
+MODEL_SAVE_PER_N_EPOCH: 3
+VIS_PER_N_EPOCH: 1
+VIS_PER_N_BATCH: 1
+VIS_ONE_PER_BATCH: False
+#VIS_TRAIN_PER_BATCH: 100
+
+RESUME: False
+# default log of mv-car-plain training 
+MODEL_INIT_PATH: ['/log/pix2surf-mv-car-plain/model/epoch_30.model']
+
+#published mv viz weights
+#MODEL_INIT_PATH: ['resource/weight/viz_car.model']
+
+
+BACKUP_FILES: ['core/net_bank/pix2surf_cnn.py',
+               'core/net_bank/mlp.py',
+               'core/net_bank/loss.py',
+               'core/models/utils/model_utils.py',
+               'core/models/utils/render_utils.py']
+RENDER_MASK_TH: 0.02
+RENDER_IMAGE_MASK_NK: 6

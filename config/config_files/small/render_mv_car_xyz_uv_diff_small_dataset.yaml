@@ -1,0 +1,48 @@
+DATASET_ROOT: 'small_dataset'
+DATASET: 'mv5_correspondence_dataset_no_shuffle'
+DATASET_CATES: ['car']
+PROPORTION: 1.0
+DATASET_INDEX: ['resource/index/pix2surf_viz_car_small_train.json',
+                'resource/index/pix2surf_viz_car_small_test.json']
+
+
+MODES: ['test']
+MODEL: 'pix2surf_mv_render'
+
+GPU: [0]
+BATCHSIZE: 2
+DATALOADER_WORKERS: 4
+EPOCH_TOTAL: 1
+LR: 0.0
+
+LOG_DIR: 'render-mv-car-xyz-uv-diff-small_dataset'
+
+LOGGER: 'logger_s1'
+LOGGER_SELECT: ['metric','image','model','xls']
+MODEL_SAVE_PER_N_EPOCH: 3
+VIS_PER_N_EPOCH: 1
+VIS_PER_N_BATCH: 1
+VIS_ONE_PER_BATCH: False
+#VIS_TRAIN_PER_BATCH: 100
+
+RESUME: False
+# published mv car plain
+#MODEL_INIT_PATH: ['resource/weight/eccv_pix2surf_mv_car_plain_epoch_21.model']
+# published sv car plain
+#MODEL_INIT_PATH: ['resource/weight/eccv_pix2surf_sv_car_plain_epoch_30.model']
+# my sv and mv retraining from scratch
+#MODEL_INIT_PATH: ['resource/weight/my_training_mv_car_plain_epoch_30.model']
+#MODEL_INIT_PATH: ['resource/weight/my_training_sv_car_plain_epoch_30.model']
+
+#recent tests
+MODEL_INIT_PATH: ['log/mv-car-xyz-uv-diff-small_dataset/model/epoch_50_latest.model']
+
+
+
+BACKUP_FILES: ['core/net_bank/pix2surf_cnn.py',
+               'core/net_bank/mlp.py',
+               'core/net_bank/loss.py',
+               'core/models/utils/model_utils.py',
+               'core/models/utils/render_utils.py']
+RENDER_MASK_TH: 0.02
+RENDER_IMAGE_MASK_NK: 6
